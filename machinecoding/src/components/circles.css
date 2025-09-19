@@ -1,0 +1,32 @@
+.rounded{
+    border-radius: 50%;
+}
+.circle{
+    width: 150px;
+    height: 150px;
+    background: red;
+    position: relative;
+
+}
+.circle::before{
+    content: '';
+    width: 120px;
+    height: 120px;
+    background: white;
+    position: absolute;
+    margin: auto;
+    top: 15px;
+    left: 15px;
+    border-radius: 50%;
+ 
+}
+.circle::after{
+    content: '';
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    background: red;
+    top: 30px;
+    left: 30px;
+    border-radius: 50%;
+}
