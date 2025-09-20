@@ -80,31 +80,32 @@ export default function useCounter({onComplete,autoStart=true,onTick,initialSec,
                 onComplete?.('timer');
                 return;
               }
-        
-            //   if (timerState.counter < 0 && (timerState.minCounter > 0 || timerState.hrCounter > 0)) {
-            //     const borrow = Math.ceil(Math.abs(timerState.counter) / 60); // how many minutes to borrow
-            //     timerState.counter = (timerState.counter % 60 + 60) % 60; // normalize into [0..59]
-            //     timerState.minCounter -= borrow;
-            //   }
-            
-            //   // Borrow from hours if minutes go below 0
-            //   if (timerState.minCounter < 0 && timerState.hrCounter > 0) {
-            //     const borrow = Math.ceil(Math.abs(minCounter) / 60); // how many hours to borrow
-            //     timerState.minCounter = (timerState.minCounter % 60 + 60) % 60;
-            //     timerState.hrCounter -= borrow;
-            //   }
 
               if(timerState.counter===0&&timerState.minCounter>0&&timerState.hrCounter===0){
-                dispatch({type:'update',step,unit:"minCounter"});
+                dispatch({type:'update',step:1,unit:"minCounter"});
                 dispatch({type:'update',payload:59,unit:"counter"});
                 return;
               }
               if(timerState.counter===0&&timerState.minCounter>=0&&timerState.hrCounter>0){
-                dispatch({type:'update',step,unit:"hrCounter"});
+                dispatch({type:'update',step:1,unit:"hrCounter"});
                 dispatch({type:'update',payload:59,unit:"minCounter"});
                 dispatch({type:'update',payload:59,unit:"counter"});
                 return;
               }
+              if (timerState.counter < 0 && (timerState.minCounter > 0 || timerState.hrCounter > 0)) {
+                const borrow = Math.ceil(Math.abs(timerState.counter) / 60);
+                dispatch({type:'update',step:borrow,unit:"minCounter"});
+                dispatch({type:'update',payload:((timerState.counter % 60) + 60) % 60,unit:"counter"});
+                return;
+              }
+          
+              // Borrow from hours if minutes < 0
+              if (timerState.minCounter < 0 && timerState.hrCounter > 0) {
+                const borrow = Math.ceil(Math.abs(timerState.minCounter) / 60);
+                dispatch({type:'update',payload:((timerState.minCounter % 60) + 60) % 60,unit:"minCounter"});
+                dispatch({type:'update',step:borrow,unit:"hrCounter"});
+              }
+
         
               onTick?.(timerState)
            

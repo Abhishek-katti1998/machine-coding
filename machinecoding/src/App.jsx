@@ -9,13 +9,12 @@ function App() {
  
 
   return <>
-
 <button onClick={()=>{setShow(p=>!p)}}>toggle</button>
 {show&&<TimerCounter
+step={10}
 initialHr={1}
 initialMin={1}
 initialSec={5}
-// step={10}
 onComplete={(param)=>{
 console.log(param+'completed')
 }} onTick={(tick)=>{
