@@ -4,21 +4,18 @@ import Offline from './components/Offline/Offline';
 import TimerCounter from './components/TimerCounter';
 function App() {
 
-  const [show,setShow]=useState(false);
 
  
 
   return <>
 <button onClick={()=>{setShow(p=>!p)}}>toggle</button>
-{show&&<TimerCounter
-step={10}
-initialHr={1}
-initialMin={1}
-initialSec={5}
+{<TimerCounter
+step={4}
+initialSec={40}
 onComplete={(param)=>{
 console.log(param+'completed')
 }} onTick={(tick)=>{
-  console.log('tick tick',tick)
+  // console.log('tick tick',tick)
 }}/>}
   
   </> 
