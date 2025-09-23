@@ -32,7 +32,51 @@ describe('Practice Form test',()=>{
     await user.click(screen.getByRole('button',{name:/submit/i}));
     expect(handleSubmit).toBeCalledWith({name:"Abhishek",email:"abhishekmkatti@gmail.com",phone:"7204303909",age:20})
     })
-    
+
+
+test("shows error when email is invalid", async () => {
+  const user = userEvent.setup();
+
+  render(
+    <PracticeForm
+      initialValues={{ name: "", email: "", phone: "", age: "" }}
+      handleSubmit={jest.fn()}
+      validate={() => ({ email: "Invalid email" })} // mock validation result
+      resetError={jest.fn()}
+      errors={{ email: "Invalid email" }}
+    />
+  );
+
+  const emailInput = screen.getByRole("textbox", { name: /email input/i });
+
+  // type invalid email and blur (user action)
+  await user.type(emailInput, "not-an-email");
+  await user.tab(); // move focus away to trigger blur
+
+  expect(await screen.findByText("Invalid email")).toBeInTheDocument();
+});
+
+test("calls resetError when focusing on input", async () => {
+    const resetError = jest.fn();
+    const user = userEvent.setup();
+  
+    render(
+      <PracticeForm
+        initialValues={{ name: "", email: "", phone: "", age: "" }}
+        handleSubmit={jest.fn()}
+        validate={jest.fn()}
+        resetError={resetError}
+        errors={{}}
+      />
+    );
+  
+    const nameInput = screen.getByRole("textbox", { name: /name input/i });
+  
+    await user.click(nameInput); // focus input
+  
+    expect(resetError).toHaveBeenCalled();
+  });
+  
 
 
 })
