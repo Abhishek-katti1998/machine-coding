@@ -1,5 +1,5 @@
 import { renderHook, act } from "@testing-library/react"
-import useCounter from "../../hooks/Counter/useCounter"
+import useCounter from '../../hooks/Counter/useCounter.js';
 
 jest.useFakeTimers()
 
@@ -105,6 +105,7 @@ describe("useCounter Hook", () => {
     expect(result.current.timerState.hrCounter).toBe(0);
   })
 
+  
 })
 
 

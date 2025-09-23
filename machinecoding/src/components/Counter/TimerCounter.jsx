@@ -1,5 +1,5 @@
 
-import useCounter from "../hooks/Counter/useCounter"
+import useCounter from "../../hooks/Counter/useCounter.js"
 const TimerFormat=({type="seconds",counter,minCounter,hrCounter})=>{
 
  switch(type){

@@ -1,8 +1,7 @@
 import {describe,expect,test} from '@jest/globals';
-import userEvent from '@testing-library/user-event';
 import { screen,render, fireEvent,act } from '@testing-library/react';
 import '@testing-library/jest-dom'
-import TimerCounter from '../TimerCounter'
+import TimerCounter from '../Counter/TimerCounter';
 
 
 jest.useFakeTimers()
