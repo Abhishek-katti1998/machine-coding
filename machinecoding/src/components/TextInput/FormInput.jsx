@@ -23,6 +23,15 @@ export default function PracticeForm({ onSubmit, validate, errors, initialValues
   };
 
   return (
+    <div>
+
+    <select role='' onChange={(val)=>{console.log(val)}}>
+      {
+        ["Abhishek","Mahantesh","Katti"].map((el)=><option  key={el} value={el}>
+          {el}
+        </option>)
+      }
+    </select>
     <form onSubmit={handleSubmit} aria-label="Form input">
       {["name", "email", "phone", "age"].map((field) => (
         <div key={field}>
@@ -44,5 +53,8 @@ export default function PracticeForm({ onSubmit, validate, errors, initialValues
       ))}
       <button type="submit">Submit</button>
     </form>
+
+    </div>
+
   );
 }
