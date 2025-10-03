@@ -30,3 +30,8 @@
     .form-actions button{padding:8px 12px;border-radius:6px;border:none;background:var(--accent);color:white}
     .form-actions .danger{background:#dc2626}
     .footer{margin-top:12px;color:var(--muted);font-size:0.9rem}
+
+    img{
+        width: 400px;
+        height: 200px;
+    }
