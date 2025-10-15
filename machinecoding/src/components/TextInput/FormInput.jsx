@@ -51,6 +51,7 @@ export default function PracticeForm({ onSubmit, validate, errors, initialValues
           {touched[field] && errors[field] && <p>{errors[field]}</p>}
         </div>
       ))}
+      <button onClick={()=>setValues({...values,name:''})}>restName</button>
       <button type="submit">Submit</button>
     </form>
 

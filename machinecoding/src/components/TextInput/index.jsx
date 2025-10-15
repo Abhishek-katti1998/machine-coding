@@ -1,3 +1,5 @@
+import { useState } from "react";
+import PracticeForm from "./FormInput";
 export default function FormWrapper(){
     const [errors, setErrors] = useState({ name: "", email: "", phone: "", age: "" });
 
